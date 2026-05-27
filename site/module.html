@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CS6493 NLP Module Review</title>
+    <meta name="description" content="CS6493 NLP 课程模块复习页：知识点、题型与答题模板。" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="module-page">
+    <div class="background-system" aria-hidden="true">
+      <span class="bg-beam bg-beam-a"></span>
+      <span class="bg-beam bg-beam-b"></span>
+      <span class="bg-noise"></span>
+    </div>
+
+    <aside id="study-sidebar" class="study-sidebar module-sidebar" aria-label="模块导航">
+      <button
+        id="sidebar-toggle"
+        class="sidebar-toggle"
+        type="button"
+        aria-controls="study-sidebar"
+        aria-expanded="true"
+      >
+        <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+        <span class="sidebar-toggle-text">收起</span>
+      </button>
+      <nav id="module-sidebar-nav" class="sidebar-nav module-sidebar-nav"></nav>
+    </aside>
+
+    <div class="site-shell">
+      <header class="topbar" aria-label="Primary">
+        <a class="brand" href="./index.html" aria-label="Back to home">
+          <span class="brand-mark" aria-hidden="true">NLP</span>
+          <span>
+            <strong>CS6493 Final Review</strong>
+            <small>Module Workspace</small>
+          </span>
+        </a>
+        <nav class="topnav" aria-label="Module actions">
+          <a href="./index.html#modules">全部模块</a>
+          <a href="#content">知识点</a>
+          <a href="#practice">题目</a>
+          <a href="#template">模板</a>
+        </nav>
+      </header>
+
+      <main id="module-root">
+        <section id="module-hero" class="module-hero"></section>
+        <section id="study-plan" class="content-section study-plan" aria-labelledby="plan-title">
+          <div class="section-heading">
+            <p class="eyebrow">From Zero To Exam</p>
+            <h2 id="plan-title">学习路径与考试定位</h2>
+          </div>
+          <div id="module-orientation" class="orientation-grid"></div>
+        </section>
+        <section id="content" class="content-section module-content" aria-labelledby="content-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Structured Notes</p>
+              <h2 id="content-title">知识点整理</h2>
+            </div>
+            <p id="module-source" class="result-count"></p>
+          </div>
+          <div id="section-list" class="section-list"></div>
+        </section>
+
+        <section id="practice" class="content-section chapter-workbench" aria-labelledby="practice-title">
+          <div class="section-heading">
+            <p class="eyebrow">Practice Archive</p>
+            <h2 id="practice-title">Tutorial / 作业 / 期末题</h2>
+          </div>
+          <div id="module-practice" class="chapter-practice-grid"></div>
+        </section>
+
+        <section id="template" class="content-section" aria-labelledby="template-title">
+          <div class="section-heading">
+            <p class="eyebrow">Answer Template</p>
+            <h2 id="template-title">答题模板</h2>
+          </div>
+          <div id="module-template" class="template-box module-template"></div>
+        </section>
+
+        <section id="self-check" class="content-section self-check" aria-labelledby="self-check-title">
+          <div class="section-heading">
+            <p class="eyebrow">Self Check</p>
+            <h2 id="self-check-title">考前自测</h2>
+          </div>
+          <div id="self-check-list" class="self-check-list"></div>
+        </section>
+
+        <nav id="module-pager" class="module-pager" aria-label="Previous and next modules"></nav>
+      </main>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./notes-data.js"></script>
+    <script src="./module.js"></script>
+  </body>
+</html>

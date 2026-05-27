@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CS6493 NLP Final Review</title>
+    <meta
+      name="description"
+      content="CS6493 NLP 期末复习导航：按模块进入子页面，复习课程知识点、考试题型与答题模板。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="home-page">
+    <div class="background-system" aria-hidden="true">
+      <span class="bg-beam bg-beam-a"></span>
+      <span class="bg-beam bg-beam-b"></span>
+      <span class="bg-noise"></span>
+    </div>
+
+    <aside id="study-sidebar" class="study-sidebar" aria-label="模块导航">
+      <button
+        id="sidebar-toggle"
+        class="sidebar-toggle"
+        type="button"
+        aria-controls="study-sidebar"
+        aria-expanded="true"
+      >
+        <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+        <span class="sidebar-toggle-text">收起</span>
+      </button>
+      <nav class="sidebar-nav"></nav>
+    </aside>
+
+    <div class="site-shell">
+      <header class="topbar" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="CS6493 NLP Final Review home">
+          <span class="brand-mark" aria-hidden="true">NLP</span>
+          <span>
+            <strong>CS6493 Final Review</strong>
+            <small>Natural Language Processing</small>
+          </span>
+        </a>
+        <nav class="topnav" aria-label="Page sections">
+          <a href="#routes">复习路线</a>
+          <a href="#modules">模块</a>
+          <a href="#exam-focus">题型</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero section-grid" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Final Exam Navigator</p>
+            <h1 id="hero-title">NLP 复习地图</h1>
+            <p class="hero-lede">
+              本门课分为 6 个核心复习模块，每个模块都围绕期末考试需要掌握的核心概念、作业、
+              Tutorial 和参考题型进行整理。
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button button-primary" href="module.html?id=m1">开始 Module 1</a>
+              <a class="button button-secondary" href="#modules">查看全部模块</a>
+            </div>
+            <dl class="metric-strip" aria-label="Course overview">
+              <div>
+                <dt>6</dt>
+                <dd>核心模块</dd>
+              </div>
+              <div>
+                <dt>85</dt>
+                <dd>知识章节</dd>
+              </div>
+              <div>
+                <dt>40%</dt>
+                <dd>Final exam</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="command-panel" aria-labelledby="search-title">
+          <div>
+            <p class="eyebrow">Search</p>
+            <h2 id="search-title">快速定位模块</h2>
+          </div>
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true"></span>
+            <span class="sr-only">搜索模块、关键词或题型</span>
+            <input
+              id="module-search"
+              type="search"
+              placeholder="输入 BERT、BLEU、RAG、n-gram、LoRA..."
+              autocomplete="off"
+            />
+          </label>
+          <div class="filter-row" role="group" aria-label="Module filters">
+            <button class="filter-pill is-active" type="button" data-filter="all">全部</button>
+            <button class="filter-pill" type="button" data-filter="basic">Basics</button>
+            <button class="filter-pill" type="button" data-filter="tasks">Tasks</button>
+            <button class="filter-pill" type="button" data-filter="llm">LLM</button>
+            <button class="filter-pill" type="button" data-filter="exam">Exam</button>
+          </div>
+        </section>
+
+        <section id="routes" class="content-section" aria-labelledby="routes-title">
+          <div class="section-heading">
+            <p class="eyebrow">Learning Routes</p>
+            <h2 id="routes-title">课程知识主线</h2>
+          </div>
+          <div class="route-grid">
+            <article class="route-panel accent-cyan">
+              <p>Representation</p>
+              <h3>文本如何变成模型输入</h3>
+              <span>M1 Tokenization -> M3 Embeddings -> M4 Contextual representations</span>
+            </article>
+            <article class="route-panel accent-coral">
+              <p>Language Modeling</p>
+              <h3>从 n-gram 到 Transformer</h3>
+              <span>M2 LM/RNN/LSTM -> M4 Attention -> M6 LLM</span>
+            </article>
+            <article class="route-panel accent-amber">
+              <p>Tasks / Systems</p>
+              <h3>理解、生成、评价与对话系统</h3>
+              <span>M5 Classification / QA / MT / Dialogue / BLEU</span>
+            </article>
+            <article class="route-panel accent-green">
+              <p>LLM Applications</p>
+              <h3>大模型如何被使用和增强</h3>
+              <span>M6 Prompting -> Alignment -> Agent -> RAG -> PEFT/LoRA</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="modules" class="content-section" aria-labelledby="modules-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Modules</p>
+              <h2 id="modules-title">进入模块子页面</h2>
+            </div>
+            <p id="result-count" class="result-count" aria-live="polite"></p>
+          </div>
+          <div id="module-grid" class="module-grid"></div>
+          <p id="empty-state" class="empty-state" hidden>
+            没有找到对应模块。可以试试关键词：BERT、Transformer、RAG、BLEU、n-gram、LoRA。
+          </p>
+        </section>
+
+        <section id="exam-focus" class="content-section exam-section" aria-labelledby="exam-title">
+          <div class="section-heading">
+            <p class="eyebrow">Exam Focus</p>
+            <h2 id="exam-title">高频题型</h2>
+          </div>
+          <div class="exam-layout">
+            <article class="answer-card">
+              <span>Concept</span>
+              <h3>概念解释题</h3>
+              <p>定义、动机、机制、例子、局限或评价。</p>
+            </article>
+            <article class="answer-card">
+              <span>Compare</span>
+              <h3>方法对比题</h3>
+              <p>共同目标、结构差异、训练目标、适用任务。</p>
+            </article>
+            <article class="answer-card">
+              <span>Calculate</span>
+              <h3>计算题</h3>
+              <p>n-gram、embedding 参数量、attention、mask、BLEU、beam search。</p>
+            </article>
+            <article class="answer-card">
+              <span>System</span>
+              <h3>系统设计题</h3>
+              <p>NLU、state tracking、policy、NLG、backend/API、evaluation。</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>CS6493 NLP Final Review</span>
+        <span>Course-focused module navigator</span>
+      </footer>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

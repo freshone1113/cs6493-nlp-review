@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CS6493 NLP 全量交互复习</title>
+    <meta
+      name="description"
+      content="把 CS6493 NLP Markdown 笔记转成从零基础到考试通过的交互式复习网页。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="study-page">
+    <div class="background-system" aria-hidden="true">
+      <span class="bg-beam bg-beam-a"></span>
+      <span class="bg-beam bg-beam-b"></span>
+      <span class="bg-noise"></span>
+    </div>
+
+    <aside id="study-sidebar" class="study-sidebar study-atlas-sidebar" aria-label="全量笔记导航">
+      <button
+        id="sidebar-toggle"
+        class="sidebar-toggle"
+        type="button"
+        aria-controls="study-sidebar"
+        aria-expanded="true"
+      >
+        <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+        <span class="sidebar-toggle-text">收起</span>
+      </button>
+      <nav id="atlas-nav" class="sidebar-nav"></nav>
+    </aside>
+
+    <div class="site-shell">
+      <header class="topbar" aria-label="Primary">
+        <a class="brand" href="./index.html" aria-label="CS6493 NLP Final Review home">
+          <span class="brand-mark" aria-hidden="true">NLP</span>
+          <span>
+            <strong>CS6493 Final Review</strong>
+            <small>Interactive Study Atlas</small>
+          </span>
+        </a>
+        <nav class="topnav" aria-label="Page sections">
+          <a href="./index.html">主页</a>
+          <a href="#study-routes">路线</a>
+          <a href="#knowledge-atlas">知识库</a>
+          <a href="#exam-lab">练习</a>
+          <a href="#toolbox">工具</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="study-hero" aria-labelledby="study-title">
+          <div class="study-hero-copy">
+            <p class="eyebrow">Zero-based Exam System</p>
+            <h1 id="study-title">从没上过课，到能写出期末答案</h1>
+            <p class="hero-lede">
+              这不是把 Markdown 原样贴到网页上，而是把每个知识点放进“先懂直觉、再背公式、最后套模板”的学习路径里。你可以搜索、标记进度、抽查考点，也可以用小工具练 n-gram、参数量、BLEU 和 mask。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#knowledge-atlas">开始全量复习</a>
+              <a class="button button-secondary" href="#exam-lab">进入考前训练</a>
+            </div>
+          </div>
+          <div class="study-command" aria-label="Study dashboard">
+            <div class="command-head">
+              <span>Study Console</span>
+              <strong id="completion-rate">0%</strong>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <span id="completion-bar"></span>
+            </div>
+            <dl class="study-stats">
+              <div>
+                <dt id="stat-modules">8</dt>
+                <dd>Markdown 文件</dd>
+              </div>
+              <div>
+                <dt id="stat-sections">0</dt>
+                <dd>知识章节</dd>
+              </div>
+              <div>
+                <dt id="stat-points">0</dt>
+                <dd>复习点</dd>
+              </div>
+            </dl>
+            <div id="next-action" class="next-action"></div>
+          </div>
+        </section>
+
+        <section id="study-routes" class="content-section" aria-labelledby="routes-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Learning Design</p>
+              <h2 id="routes-title">我会怎么带你学</h2>
+            </div>
+            <p class="result-count">每条路线都对应一种考试能力</p>
+          </div>
+          <div class="route-grid study-route-grid">
+            <article class="route-panel accent-cyan">
+              <p>Input Pipeline</p>
+              <h3>文本进模型</h3>
+              <span>Raw text -> tokens -> ids -> padding/mask -> representation</span>
+            </article>
+            <article class="route-panel accent-green">
+              <p>Representation</p>
+              <h3>词和句子怎么表示</h3>
+              <span>one-hot -> embedding -> contextual embedding -> Transformer states</span>
+            </article>
+            <article class="route-panel accent-coral">
+              <p>Modeling</p>
+              <h3>语言如何被建模</h3>
+              <span>chain rule -> n-gram -> RNN/LSTM -> attention -> GPT</span>
+            </article>
+            <article class="route-panel accent-amber">
+              <p>Exam Output</p>
+              <h3>答案如何写完整</h3>
+              <span>Definition -> Why -> How -> Example -> Limitation/Evaluation</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="command-panel atlas-command" aria-labelledby="atlas-search-title">
+          <div>
+            <p class="eyebrow">Knowledge Search</p>
+            <h2 id="atlas-search-title">搜索任何知识点</h2>
+          </div>
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true"></span>
+            <span class="sr-only">搜索模块、公式、题型或英文术语</span>
+            <input
+              id="atlas-search"
+              type="search"
+              placeholder="试试：QKV、BLEU、negative sampling、LoRA、padding mask..."
+              autocomplete="off"
+            />
+          </label>
+          <div class="filter-row" role="group" aria-label="Study mode filters">
+            <button class="filter-pill is-active" type="button" data-mode="all">全部</button>
+            <button class="filter-pill" type="button" data-mode="foundation">先学基础</button>
+            <button class="filter-pill" type="button" data-mode="exam">考试高频</button>
+            <button class="filter-pill" type="button" data-mode="marked">已标记</button>
+          </div>
+        </section>
+
+        <section id="knowledge-atlas" class="content-section" aria-labelledby="atlas-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Full Markdown Atlas</p>
+              <h2 id="atlas-title">全量知识库</h2>
+            </div>
+            <p id="atlas-count" class="result-count" aria-live="polite"></p>
+          </div>
+          <div id="notebook-list" class="notebook-list"></div>
+          <p id="atlas-empty" class="empty-state" hidden>
+            没有匹配项。可以换成英文术语或题型关键词，例如 attention、dialogue、参数量。
+          </p>
+        </section>
+
+        <section id="exam-lab" class="content-section exam-lab" aria-labelledby="exam-lab-title">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Exam Lab</p>
+              <h2 id="exam-lab-title">闭卷答题训练</h2>
+            </div>
+            <button id="shuffle-card" class="button button-secondary" type="button">换一道题</button>
+          </div>
+          <div class="exam-lab-layout">
+            <article class="drill-panel">
+              <span id="drill-source">Concept Drill</span>
+              <h3 id="drill-question">Loading...</h3>
+              <p id="drill-hint"></p>
+              <button id="reveal-answer" class="button button-primary" type="button">显示答案结构</button>
+              <div id="drill-answer" class="drill-answer" hidden></div>
+            </article>
+            <article class="answer-builder">
+              <span>Answer Builder</span>
+              <h3>把散点变成得分答案</h3>
+              <div class="builder-grid">
+                <label>Define<textarea data-template="define" placeholder="这个概念是什么？"></textarea></label>
+                <label>Why<textarea data-template="why" placeholder="为什么需要它？"></textarea></label>
+                <label>How<textarea data-template="how" placeholder="它怎么工作？"></textarea></label>
+                <label>Example<textarea data-template="example" placeholder="给一个具体例子。"></textarea></label>
+                <label>Limit<textarea data-template="limit" placeholder="有什么局限或评价方式？"></textarea></label>
+              </div>
+              <button id="compose-answer" class="button button-secondary" type="button">生成答案骨架</button>
+              <pre id="composed-answer" class="composed-answer"></pre>
+            </article>
+          </div>
+        </section>
+
+        <section id="toolbox" class="content-section toolbox" aria-labelledby="toolbox-title">
+          <div class="section-heading">
+            <p class="eyebrow">Interactive Tools</p>
+            <h2 id="toolbox-title">四个最容易考的小工具</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="tool-panel">
+              <span>N-gram</span>
+              <h3>列举 n-gram</h3>
+              <textarea id="ngram-sentence">I am taking CS6493 this semester and studying NLP is really fascinating</textarea>
+              <div class="tool-controls">
+                <label>n <input id="ngram-n" type="number" min="1" max="4" value="2" /></label>
+                <label>目标词 <input id="ngram-target" type="text" placeholder="可空，如 NLP" /></label>
+              </div>
+              <button class="button button-secondary" type="button" data-tool="ngram">生成</button>
+              <pre id="ngram-output"></pre>
+            </article>
+
+            <article class="tool-panel">
+              <span>Embedding</span>
+              <h3>参数量计算</h3>
+              <div class="tool-controls">
+                <label>|V| <input id="vocab-size" type="number" min="1" value="50000" /></label>
+                <label>d <input id="embed-dim" type="number" min="1" value="128" /></label>
+              </div>
+              <button class="button button-secondary" type="button" data-tool="params">计算</button>
+              <pre id="params-output"></pre>
+            </article>
+
+            <article class="tool-panel">
+              <span>BLEU</span>
+              <h3>brevity penalty</h3>
+              <div class="tool-controls">
+                <label>candidate 长度 <input id="cand-len" type="number" min="1" value="8" /></label>
+                <label>reference 长度 <input id="ref-len" type="number" min="1" value="10" /></label>
+              </div>
+              <button class="button button-secondary" type="button" data-tool="bp">计算 BP</button>
+              <pre id="bp-output"></pre>
+            </article>
+
+            <article class="tool-panel">
+              <span>Mask</span>
+              <h3>causal mask 矩阵</h3>
+              <div class="tool-controls">
+                <label>长度 <input id="mask-size" type="number" min="2" max="8" value="5" /></label>
+              </div>
+              <button class="button button-secondary" type="button" data-tool="mask">生成</button>
+              <pre id="mask-output"></pre>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>CS6493 NLP Full Study Atlas</span>
+        <span>Generated from local Markdown notes</span>
+      </footer>
+    </div>
+
+    <script src="./notes-data.js"></script>
+    <script src="./study.js"></script>
+  </body>
+</html>
